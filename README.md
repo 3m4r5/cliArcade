@@ -1,34 +1,20 @@
 # cliArcade
 > Play retro games in your linux terminal.
-
-### Whats new?
-there's hundreds of similar projects out there but what makes this one unique feature is the ability to choose from 6 different rendering resolutions.
-<details open><summary>video demos</summary>
-
+### Why?
+there's hundreds of similar projects out there but what makes this one unique is the ability to choose from 6 different rendering resolutions.
+### Video Demos
 > [!TIP]
 > If the output doesn't look right it is probably because of the font your terminal is using, use one of these recommended terminal emulators instead: [kitty](https://sw.kovidgoyal.net/kitty), [wizterm](https://wezfurlong.org/wezterm), [foot](https://codeberg.org/dnkl/foot).
 
 |[![vid](https://img.youtube.com/vi/ZEhrxV3D07o/default.jpg)](https://youtu.be/ZEhrxV3D07o)<br>Snake|[![vid](https://img.youtube.com/vi/YGyJRs-reIk/default.jpg)](https://youtu.be/YGyJRs-reIk)<br>Oscillators|
 |:-:|:-:|
 |[![vid](https://img.youtube.com/vi/GkgLRtLd3XY/default.jpg)](https://youtu.be/GkgLRtLd3XY)<br>Manual Entry|[![vid](https://img.youtube.com/vi/2-pmjYV7ReA/default.jpg)](https://youtu.be/2-pmjYV7ReA)<br>Replicator
-
-</details><details><summary>How does it work?</summary>
-
+### How Does It Work?
 I was inspired by [the unicode implementation of braille characters](https://en.wikipedia.org/wiki/Braille_Patterns), So I followed a similar approach and made a lookup array to index into:
-```cpp
-auto lookupArray = L" ▘▝▀▖▌▞▛▗▚▐▜▄▙▟█";
-for (int i = 0, h = height(); i < h; i += 2){
-   printBuffer.emplace_back(L"");
-   for (int j = 0, w = width(); j < w; j += 2)
-      printBuffer.back() += lookupArray[
-         rawBuffer[i][j]
-         | rawBuffer[i][j + 1]     << 1
-         | rawBuffer[i + 1][j]     << 2
-         | rawBuffer[i + 1][j + 1] << 3
-      ];
-}
-```
-</details><details><summary>Project File Structure</summary>
+
+https://github.com/3m4r5/cliArcade/blob/d3e2cef8b0cd7963b4133203e4a9cc37649577e0/terminal.cpp#L151-L160
+
+<details><summary>Project File Structure</summary>
 
 > [!NOTE]
 > The entire project results in a single object file because this project is small and the compile time is not an issue.
